@@ -8,11 +8,23 @@ public class SeqEvaluator<T> implements Evaluator<T> {
 
   public void addDependency(FunNode<T> a, FunNode<T> b, int i) {
     // part 2: sequential function evaluator
-    throw new UnsupportedOperationException();
+    listeners.computeIfAbsent(a, k -> new ArrayList<>())
+        .add(nodeValue -> {
+            if(b.setInput(i, nodeValue).isPresent())
+                start(List.of(b));
+        });
+    //throw new UnsupportedOperationException();
   }
 
   public void start(List<FunNode<T>> nodes) {
     // part 2: sequential function evaluator
-    throw new UnsupportedOperationException();
+    nodes.forEach(node -> {
+        node.eval();
+        Optional.ofNullable(listeners.get(node))
+              .ifPresent(dependencyList -> dependencyList
+                      .forEach(consumer -> consumer.accept(node.getResult()))
+              );
+    });
+    //throw new UnsupportedOperationException();
   }
 }

@@ -32,9 +32,10 @@ public class FunNode<T> {
 
   public void eval() {
     // part 1: function data dependency graph node
-    List<T> function_inputs = inputs.stream().map(a -> a.get()).collect(Collectors.toList());
-
-    output = Optional.of(this.f.apply(function_inputs));
+    if(inputs.stream().allMatch(Optional::isPresent)) {
+      List<T> function_inputs = inputs.stream().map(a -> a.get()).collect(Collectors.toList());
+      output = Optional.of(this.f.apply(function_inputs));
+    }
     //throw new UnsupportedOperationException();
   }
 }
