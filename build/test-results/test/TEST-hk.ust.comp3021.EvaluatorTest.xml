@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.EvaluatorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-11-13T14:34:38" hostname="HenrydeMacBook-Air-3.local" time="11.84">
-  <properties/>
-  <testcase name="[1] hk.ust.comp3021.SeqEvaluator@4d154ccd" classname="hk.ust.comp3021.EvaluatorTest" time="0.022"/>
-  <testcase name="[1] hk.ust.comp3021.SeqEvaluator@72bc6553" classname="hk.ust.comp3021.EvaluatorTest" time="11.814"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
