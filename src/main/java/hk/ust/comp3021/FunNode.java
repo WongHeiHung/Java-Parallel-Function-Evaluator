@@ -28,9 +28,9 @@ public class FunNode<T> {
     //throw new UnsupportedOperationException();
   }
 
-  public T getResult() { return output.get(); }
+  public  T getResult() { synchronized(this){return output.get(); }}
 
-  public void eval() {
+  public synchronized void eval() {
     // part 1: function data dependency graph node
     if(inputs.stream().allMatch(Optional::isPresent)) {
       List<T> function_inputs = inputs.stream().map(a -> a.get()).collect(Collectors.toList());

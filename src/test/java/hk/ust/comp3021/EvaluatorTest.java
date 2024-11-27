@@ -12,11 +12,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class EvaluatorTest {
   static List<Evaluator<Object>> evaluators() {
     return List.of(
-             new SeqEvaluator<>()
+             //new SeqEvaluator<>()
             //,
             // new SeqContEvaluator<>()
             //,
-            // new ParEvaluator<>(4)
+            new ParEvaluator<>(4)
     );
   }
 
