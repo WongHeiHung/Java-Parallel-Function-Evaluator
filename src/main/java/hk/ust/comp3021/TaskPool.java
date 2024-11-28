@@ -78,11 +78,8 @@ public class TaskPool {
 
     public void addTasks(List<Runnable> tasks) {
         // part 3: task pool
-        for (Runnable task : tasks) {
-            this.addTask(task);
-        }
+        tasks.forEach(this::addTask);
 
-        // Wait for the pool to become idle or for termination
         synchronized (this) {
             while (Arrays.stream(workers).allMatch(thread -> thread.getState() == Thread.State.TERMINATED) && !queue.terminated) {
                 try {
@@ -92,13 +89,11 @@ public class TaskPool {
                 }
             }
         }
-        if(!queue.terminated) {
-            for (Runnable task : tasks) {
-                try {
-                    idle.acquire();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+        if (!queue.terminated) {
+            try {
+                idle.acquire(tasks.size());
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
     //throw new UnsupportedOperationException();

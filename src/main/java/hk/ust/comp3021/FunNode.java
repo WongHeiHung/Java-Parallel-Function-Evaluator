@@ -30,7 +30,7 @@ public class FunNode<T> {
 
   public  T getResult() { synchronized(this){return output.get(); }}
 
-  public synchronized void eval() {
+  public  void eval() {
     // part 1: function data dependency graph node
     if(inputs.stream().allMatch(Optional::isPresent)) {
       List<T> function_inputs = inputs.stream().map(a -> a.get()).collect(Collectors.toList());
